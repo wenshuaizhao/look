@@ -4,36 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Learning to Look: A Foundation for Visual Understanding. Paper and code for LOOK and VisABench.">
-  <meta name="theme-color" content="#662e7d">
+  <meta name="theme-color" content="#f5f2ea">
   <title>Learning to Look</title>
   <link rel="preload" href="assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/CormorantGaramond-Variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header">
-  <div class="nav-inner">
-    <a class="wordmark" href="#top">LOOK</a>
-    <nav aria-label="Main navigation">
-      <a href="#overview">Overview</a>
-      <a href="#method">Method</a>
-      <a href="#visabench">VisABench</a>
-      <a href="#code">Code</a>
-      <a href="#citation">Citation</a>
-    </nav>
-  </div>
-</header>
+
 <main id="main">
   <section class="paper-header" id="top" aria-labelledby="paper-title">
     <h1 id="paper-title">Learning to Look</h1>
     <p class="paper-subtitle">A Foundation for Visual Understanding</p>
     <ul class="authors" aria-label="Authors">
-      <li>Wenshuai Zhao<sup>1,2</sup></li>
-      <li>Yihao Wang<sup>1,2</sup></li>
-      <li>Benjamin Robson<sup>1,2</sup></li>
-      <li>Juho Kannala<sup>1,3</sup></li>
-      <li>Arno Solin<sup>1,2</sup></li>
+      <li><a class="author-link" href="https://wenshuaizhao.github.io/">Wenshuai Zhao</a><sup>1,2</sup></li>
+      <li><a class="author-link" href="https://johanna0626.github.io/">Yihao Wang</a><sup>1,2</sup></li>
+      <li><a class="author-link" href="https://benjaminhr.com/">Benjamin Robson</a><sup>1,2</sup></li>
+      <li><a class="author-link" href="https://users.aalto.fi/~kannalj1/">Juho Kannala</a><sup>1,3</sup></li>
+      <li><a class="author-link" href="https://users.aalto.fi/~asolin/">Arno Solin</a><sup>1,2</sup></li>
     </ul>
     <p class="affiliations"><span><sup>1</sup>Aalto University</span> <span><sup>2</sup>ELLIS Institute Finland</span> <span><sup>3</sup>University of Oulu</span></p>
     <div class="paper-links">
@@ -47,11 +36,11 @@
   <section class="promo-video-section" aria-label="Project video">
     <figure class="teaser">
       <video id="teaser-video" controls muted loop playsinline preload="metadata" poster="assets/teaser.png" width="1440" height="720" aria-label="Animated Look, Perceive, and Understand sequence" aria-describedby="teaser-caption">
-        <source src="assets/teaser.mp4" type="video/mp4">
+        <source src="assets/teaser.mp4?v=2" type="video/mp4">
         <a href="assets/teaser.mp4">Watch the animated teaser</a> or <a href="assets/teaser.png">view the original figure</a>.
       </video>
       <img id="teaser-fallback" hidden src="assets/teaser.png" width="1620" height="531" alt="Look identifies the available region of an image; Perceive identifies its content; Understand interprets that content.">
-      <figcaption id="teaser-caption">We distinguish three levels of visual understanding: <em>Look</em>, <em>Perceive</em>, and <em>Understand</em>. The animation follows the selected crop through these levels. Descriptions and inference are illustrative, not model predictions.</figcaption>
+      <figcaption id="teaser-caption"><em>Look</em> identifies the available region, <em>Perceive</em> identifies its content, and <em>Understand</em> interprets it.</figcaption>
     </figure>
   </section>
 
@@ -63,6 +52,17 @@
     <p>Existing VLMs struggle to localize the visible region. Fine-tuning on <span class="smallcaps">Look</span> improves localization and visual-input awareness. We also introduce <strong>VisABench</strong> to measure whether a model’s answers depend on the presence of visual evidence.</p>
       </div>
   </section>
+
+  <nav class="section-nav" aria-label="Section navigation">
+    <div class="section-nav-inner">
+      <a href="#top">Top</a>
+      <a href="#overview">Overview</a>
+      <a href="#method">Method</a>
+      <a href="#visabench">VisABench</a>
+      <a href="#code">Quick demo</a>
+      <a href="#citation">Citation</a>
+    </div>
+  </nav>
 
   <section id="method" aria-labelledby="method-title">
     <h2 id="method-title">The LOOK task</h2>
@@ -76,22 +76,22 @@
     </figure>
     <div class="prose">
       <h3>Crop example</h3>
-      <p>Move the slider to change the crop’s horizontal position. The target box is expressed relative to the full canvas. This synthetic example illustrates the data construction; it does not run a model.</p>
+      <p>Move the crop across the photograph. The model receives the selected pixels and predicts their location within the full image.</p>
     </div>
     <div class="demo">
       <div class="demo-panes">
         <figure>
-          <div class="canvas"><img src="assets/scene.png" width="512" height="384" alt="A synthetic scene with a circle, rectangle, and triangle."><div id="window" aria-hidden="true"></div></div>
+          <div class="canvas"><img src="assets/sheep.jpg" width="640" height="480" alt="Sheep grazing in a field."><div id="window" aria-hidden="true"></div></div>
           <figcaption>Full image, with the selected region outlined</figcaption>
         </figure>
         <figure>
-          <canvas id="crop" width="256" height="192" aria-label="The selected crop pixels supplied as model input"></canvas>
+          <canvas id="crop" width="224" height="224" aria-label="The selected crop pixels supplied as model input"></canvas>
           <figcaption>Crop supplied to the model</figcaption>
         </figure>
       </div>
       <div class="demo-controls">
         <label for="position">Horizontal position</label>
-        <input id="position" type="range" min="0" max="8" value="2">
+        <input id="position" type="range" min="0" max="13" value="0">
         <output id="box" for="position" aria-live="polite"></output>
         <p class="note">Coordinates are normalized to 0–1000, relative to the full image.</p>
       </div>
@@ -103,20 +103,41 @@
     <h2 id="visabench-title">VisABench</h2>
     <div class="content-card">
     <p>VisABench asks the same object-presence questions under three conditions: the correct image, no visual evidence, and a different image. In the no-evidence condition, visual features are withheld while the input sequence layout is preserved.</p>
+    <div class="visa-example" aria-label="VisABench example">
+      <p class="visa-question">Is there a sheep in the image?</p>
+      <div class="visa-grid">
+        <figure>
+          <h3>Real image</h3>
+          <img src="assets/sheep.jpg" width="640" height="480" loading="lazy" alt="Sheep grazing in a field.">
+          <figcaption>Expected answer: <strong>Yes</strong></figcaption>
+        </figure>
+        <figure>
+          <h3>No visual evidence</h3>
+          <div class="no-evidence"><span>Visual features withheld</span></div>
+          <figcaption>Expected answer: <strong>No</strong></figcaption>
+        </figure>
+        <figure>
+          <h3>Different image</h3>
+          <img src="assets/dog.jpg" width="640" height="480" loading="lazy" alt="A dog lying in the grass beside a red frisbee.">
+          <figcaption>Expected answer: <strong>No</strong></figcaption>
+        </figure>
+      </div>
+    </div>
+
     <p>Fine-tuning on <span class="smallcaps">Look</span> reduces hallucinated object presence when evidence is absent. The paper reports these results alongside real-image performance, position-reset controls, and downstream evaluations. Results on downstream benchmarks are mixed.</p>
     <p>See the <a href="https://raw.githubusercontent.com/wenshuaizhao/look/main/main.pdf">paper</a> for the full experiments and the <a href="https://github.com/wenshuaizhao/look/blob/main/code/EVALUATION.md">evaluation instructions</a> for data requirements and commands.</p>
       </div>
   </section>
 
   <section id="code" class="prose" aria-labelledby="code-title">
-    <h2 id="code-title">Code</h2>
+    <h2 id="code-title">Quick demo</h2>
     <div class="content-card">
-    <p>The repository includes crop sampling, position overrides, the training template, and evaluation code. A small CPU example generates a crop and its training label without downloading a model.</p>
+    <p>Generate a crop from the sheep photograph and save its target box as a training example. The demo runs on CPU.</p>
     <pre><code>git clone https://github.com/wenshuaizhao/look.git
 cd look
 pip install -r code/requirements-demo.txt
 python code/examples/quickstart.py</code></pre>
-    <p class="after-code">For GPU training and benchmark evaluation, follow the <a href="https://github.com/wenshuaizhao/look#training-and-evaluation">repository instructions</a>. Model weights and datasets are obtained separately.</p>
+    <p class="after-code">The output is saved in <code>work/quickstart/</code>: <code>context.png</code>, <code>crop.png</code>, and <code>look.jsonl</code>. See the <a href="https://github.com/wenshuaizhao/look#training-and-evaluation">repository</a> for training and evaluation.</p>
       </div>
   </section>
 
@@ -125,8 +146,7 @@ python code/examples/quickstart.py</code></pre>
     <div class="content-card">
     <pre><code>@misc{zhao2026learningtolook,
   title={Learning to Look: A Foundation for Visual Understanding},
-  author={Wenshuai Zhao and Yihao Wang and Benjamin Robson
-          and Juho Kannala and Arno Solin},
+  author={Wenshuai Zhao and Yihao Wang and Benjamin Robson and Juho Kannala and Arno Solin},
   year={2026},
   url={https://github.com/wenshuaizhao/look}
 }</code></pre>
@@ -134,7 +154,8 @@ python code/examples/quickstart.py</code></pre>
   </section>
 </main>
 <footer><span>Learning to Look, 2026</span><a href="https://github.com/wenshuaizhao/look">GitHub</a></footer>
-<script src="demo.js"></script>
+<script src="demo.js?v=2"></script>
+<script src="navigation.js"></script>
 <script src="teaser.js"></script>
 </body>
 </html>
