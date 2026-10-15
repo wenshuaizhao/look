@@ -158,3 +158,17 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding-top: 
 @media (max-width: 600px) {
   .visa-grid { grid-template-columns: 1fr; gap: 28px; max-width: 360px; margin-inline: auto; }
 }
+
+.results-scroll { max-width: 100%; overflow-x: auto; margin: 26px auto 12px; }
+.results-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.results-table { width: 100%; min-width: 820px; border-collapse: collapse; color: var(--ink); font-size: 14px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+.results-table caption { padding: 0 0 16px; color: var(--ink); font-size: 16px; font-weight: 600; text-align: left; }
+.results-table th, .results-table td { padding: 10px 9px; text-align: center; white-space: nowrap; }
+.results-table thead { border-top: 2px solid var(--accent); border-bottom: 1px solid var(--line); }
+.results-table thead th { font-weight: 600; }
+.results-table tbody th { text-align: left; font-weight: 400; }
+.results-table tbody tr { border-bottom: 1px solid var(--line); }
+.results-table tbody tr:last-child { border-bottom: 2px solid var(--accent); }
+.results-table .model-group { border-top: 2px solid var(--line); }
+.results-table strong { font-weight: 700; }
+.results-note { margin-bottom: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }

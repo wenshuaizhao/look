@@ -8,7 +8,7 @@
   <title>Learning to Look</title>
   <link rel="preload" href="assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/CormorantGaramond-Variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=7">
+  <link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -124,8 +124,28 @@
       </div>
     </div>
 
-    <p>Fine-tuning on <span class="smallcaps">Look</span> reduces hallucinated object presence when evidence is absent. The paper reports these results alongside real-image performance, position-reset controls, and downstream evaluations. Results on downstream benchmarks are mixed.</p>
-    <p>See the <a href="https://raw.githubusercontent.com/wenshuaizhao/look/main/main.pdf">paper</a> for the full experiments and the <a href="https://github.com/wenshuaizhao/look/blob/main/code/EVALUATION.md">evaluation instructions</a> for data requirements and commands.</p>
+    <p>Fine-tuning on <span class="smallcaps">Look</span> reduces hallucinated object presence when evidence is absent.</p>
+    <div class="results-scroll" role="region" aria-labelledby="visa-results-caption" tabindex="0">
+      <table class="results-table">
+        <caption id="visa-results-caption">VisABench results · 10,752 items</caption>
+        <thead>
+          <tr><th scope="col" rowspan="2">Model</th><th scope="colgroup" colspan="2">No image</th><th scope="colgroup" colspan="2">Real image</th><th scope="colgroup" colspan="2">Different image</th><th scope="col" rowspan="2">Gap ↑</th></tr>
+          <tr><th scope="col">Yes (%) ↓</th><th scope="col"><i>p</i>(Yes) ↓</th><th scope="col">Yes (%) ↑</th><th scope="col"><i>p</i>(Yes) ↑</th><th scope="col">Yes (%) ↓</th><th scope="col"><i>p</i>(Yes) ↓</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Base</th><td>2.5</td><td><strong>0.041</strong></td><td>93.3</td><td><strong>0.927</strong></td><td>15.6</td><td>0.158</td><td>90.7</td></tr>
+          <tr><th scope="row">SFT</th><td>31.2</td><td>0.409</td><td>94.9</td><td>0.915</td><td>17.0</td><td>0.196</td><td>63.7</td></tr>
+          <tr><th scope="row">LocPos</th><td>5.7</td><td>0.272</td><td>92.6</td><td>0.890</td><td>15.0</td><td>0.170</td><td>86.9</td></tr>
+          <tr><th scope="row">Ours (1:10)</th><td>2.3</td><td>0.202</td><td>94.1</td><td>0.910</td><td>15.7</td><td>0.183</td><td>91.8</td></tr>
+          <tr><th scope="row">Ours (2:10)</th><td>4.9</td><td>0.241</td><td>93.9</td><td>0.911</td><td>16.0</td><td>0.188</td><td>89.0</td></tr>
+          <tr><th scope="row">Ours (10:10)</th><td><strong>0.8</strong></td><td>0.101</td><td>94.1</td><td>0.909</td><td>15.1</td><td>0.175</td><td><strong>93.2</strong></td></tr>
+          <tr class="model-group"><th scope="row">Qwen2.5-VL-7B<sup>†</sup></th><td>—</td><td>—</td><td>90.0</td><td>0.868</td><td>12.5</td><td>0.129</td><td>—</td></tr>
+          <tr><th scope="row">LLaVA-1.5-7B<sup>†</sup></th><td>—</td><td>—</td><td><strong>95.3</strong></td><td>0.775</td><td>30.2</td><td>0.355</td><td>—</td></tr>
+          <tr><th scope="row">Gemma-4-12B</th><td>42.9</td><td>0.434</td><td>88.2</td><td>0.880</td><td><strong>12.2</strong></td><td><strong>0.123</strong></td><td>45.4</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="results-note">Gap is the real-image Yes rate minus the no-image Yes rate, in percentage points. † No-image results are omitted for models that produce neither Yes nor No without visual input.</p>
       </div>
   </section>
 
