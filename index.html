@@ -153,15 +153,15 @@
     <div class="content-card">
     <p>Run two notebooks to inspect visual awareness and compare models on VisABench samples.</p>
     <ol class="notebook-list">
-      <li><a href="https://github.com/wenshuaizhao/look/blob/main/code/notebooks/01_visual_awareness_probes.ipynb">Visual-awareness probes</a><p>Compare pixel masks, patch-embedding masks, and crops with reset or restored positions.</p></li>
-      <li><a href="https://github.com/wenshuaizhao/look/blob/main/code/notebooks/02_visabench_model_comparison.ipynb">VisABench model comparison</a><p>Test Qwen3-VL-8B-Instruct, SFT, LOOK (10:10), Qwen2.5-VL, LLaVA, and Gemma on the same samples.</p></li>
+      <li><a href="https://github.com/wenshuaizhao/look/blob/main/notebooks/01_visual_awareness_probes.ipynb">Visual-awareness probes</a><p>Compare pixel masks, patch-embedding masks, and crops with reset or restored positions.</p></li>
+      <li><a href="https://github.com/wenshuaizhao/look/blob/main/notebooks/02_visabench_model_comparison.ipynb">VisABench model comparison</a><p>Test Qwen3-VL-8B-Instruct, SFT, LOOK (10:10), Qwen2.5-VL, LLaVA, and Gemma on the same samples.</p></li>
     </ol>
     <pre><code>git clone https://github.com/wenshuaizhao/look.git
 cd look
-python -m pip install -r code/requirements.txt -r code/requirements-notebooks.txt
-python -m pip install -e code/vendor/ms-swift
+python -m pip install -r requirements.txt -r requirements-notebooks.txt
+python -m pip install -e vendor/ms-swift
 python -m ipykernel install --user --name look --display-name 'Python (LOOK)'
-jupyter lab code/notebooks</code></pre>
+jupyter lab notebooks</code></pre>
     <p class="after-code">Inference uses a GPU. Set the SFT and LOOK adapter paths in the second notebook; see the <a href="https://github.com/wenshuaizhao/look#run-the-notebooks">setup instructions</a>.</p>
       </div>
   </section>
