@@ -4,10 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Learning to Look: A Foundation for Visual Understanding. Paper and code for LOOK and VisABench.">
-  <meta name="theme-color" content="#192f50">
+  <meta name="theme-color" content="#662e7d">
   <title>Learning to Look</title>
-  <link rel="preload" href="assets/fonts/source-sans-pro-regular.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="preload" href="assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/CormorantGaramond-Variable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -19,12 +20,14 @@
       <a href="#method">Method</a>
       <a href="#visabench">VisABench</a>
       <a href="#code">Code</a>
+      <a href="#citation">Citation</a>
     </nav>
   </div>
 </header>
 <main id="main">
   <section class="paper-header" id="top" aria-labelledby="paper-title">
-    <h1 id="paper-title">Learning to Look:<br><span>A Foundation for Visual Understanding</span></h1>
+    <h1 id="paper-title">Learning to Look</h1>
+    <p class="paper-subtitle">A Foundation for Visual Understanding</p>
     <ul class="authors" aria-label="Authors">
       <li>Wenshuai Zhao<sup>1,2</sup></li>
       <li>Yihao Wang<sup>1,2</sup></li>
@@ -38,6 +41,10 @@
       <a href="https://github.com/wenshuaizhao/look"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg><span>Code</span></a>
       <a href="#citation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4H5v16h3m8-16h3v16h-3M10 9h4m-4 6h4"/></svg><span>BibTeX</span></a>
     </div>
+
+  </section>
+
+  <section class="promo-video-section" aria-label="Project video">
     <figure class="teaser">
       <video id="teaser-video" controls muted loop playsinline preload="metadata" poster="assets/teaser.png" width="1440" height="720" aria-label="Animated Look, Perceive, and Understand sequence" aria-describedby="teaser-caption">
         <source src="assets/teaser.mp4" type="video/mp4">
@@ -50,14 +57,17 @@
 
   <section id="overview" class="prose" aria-labelledby="overview-title">
     <h2 id="overview-title">Overview</h2>
+    <div class="content-card">
     <p>Vision-language models can describe objects that are not present in an image. We ask whether a model knows where it is looking before interpreting what it sees.</p>
     <p>We introduce <span class="smallcaps">Look</span>, a task in which the model identifies the region of an image available to it. We construct examples by cropping images and retaining the crop’s position information from the full image. The crop coordinates provide supervision without semantic annotation.</p>
     <p>Existing VLMs struggle to localize the visible region. Fine-tuning on <span class="smallcaps">Look</span> improves localization and visual-input awareness. We also introduce <strong>VisABench</strong> to measure whether a model’s answers depend on the presence of visual evidence.</p>
+      </div>
   </section>
 
   <section id="method" aria-labelledby="method-title">
+    <h2 id="method-title">The LOOK task</h2>
+    <div class="content-card">
     <div class="prose">
-      <h2 id="method-title">The LOOK task</h2>
       <p>We resize the image to the model’s patch grid, then sample a rectangular crop aligned to complete visual tokens. The model receives only the crop pixels, with positional information inherited from the full image. It predicts the crop’s bounding box in full-image coordinates.</p>
     </div>
     <figure class="method-figure">
@@ -86,27 +96,33 @@
         <p class="note">Coordinates are normalized to 0–1000, relative to the full image.</p>
       </div>
     </div>
+      </div>
   </section>
 
   <section id="visabench" class="prose" aria-labelledby="visabench-title">
     <h2 id="visabench-title">VisABench</h2>
+    <div class="content-card">
     <p>VisABench asks the same object-presence questions under three conditions: the correct image, no visual evidence, and a different image. In the no-evidence condition, visual features are withheld while the input sequence layout is preserved.</p>
     <p>Fine-tuning on <span class="smallcaps">Look</span> reduces hallucinated object presence when evidence is absent. The paper reports these results alongside real-image performance, position-reset controls, and downstream evaluations. Results on downstream benchmarks are mixed.</p>
     <p>See the <a href="https://raw.githubusercontent.com/wenshuaizhao/look/main/main.pdf">paper</a> for the full experiments and the <a href="https://github.com/wenshuaizhao/look/blob/main/code/EVALUATION.md">evaluation instructions</a> for data requirements and commands.</p>
+      </div>
   </section>
 
   <section id="code" class="prose" aria-labelledby="code-title">
     <h2 id="code-title">Code</h2>
+    <div class="content-card">
     <p>The repository includes crop sampling, position overrides, the training template, and evaluation code. A small CPU example generates a crop and its training label without downloading a model.</p>
     <pre><code>git clone https://github.com/wenshuaizhao/look.git
 cd look
 pip install -r code/requirements-demo.txt
 python code/examples/quickstart.py</code></pre>
     <p class="after-code">For GPU training and benchmark evaluation, follow the <a href="https://github.com/wenshuaizhao/look#training-and-evaluation">repository instructions</a>. Model weights and datasets are obtained separately.</p>
+      </div>
   </section>
 
   <section id="citation" class="prose" aria-labelledby="citation-title">
     <h2 id="citation-title">Citation</h2>
+    <div class="content-card">
     <pre><code>@misc{zhao2026learningtolook,
   title={Learning to Look: A Foundation for Visual Understanding},
   author={Wenshuai Zhao and Yihao Wang and Benjamin Robson
@@ -114,6 +130,7 @@ python code/examples/quickstart.py</code></pre>
   year={2026},
   url={https://github.com/wenshuaizhao/look}
 }</code></pre>
+      </div>
   </section>
 </main>
 <footer><span>Learning to Look, 2026</span><a href="https://github.com/wenshuaizhao/look">GitHub</a></footer>
