@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
-ROOT=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd)
-export PYTHONPATH="$ROOT/code${PYTHONPATH:+:$PYTHONPATH}"
+ROOT=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+export PYTHONPATH="$ROOT${PYTHONPATH:+:$PYTHONPATH}"
 export WORK="${WORK:-$ROOT/work}"
 export MAX_PIXELS="${MAX_PIXELS:-1003520}"
 export NPROC_PER_NODE="${NPROC_PER_NODE:-4}"
@@ -17,7 +17,7 @@ case "$ARM" in
   *) echo 'ARM must be 1 (SFT), 2 (LOOK 1:1), or 3 (LOOK subset)' >&2; exit 1;;
 esac
 swift sft --model "$MODEL" \
-  --template qwen3_vl_look --custom_register_path "$ROOT/code/looktask/template.py" \
+  --template qwen3_vl_look --custom_register_path "$ROOT/looktask/template.py" \
   --dataset "${DATA[@]}" --split_dataset_ratio 0.01 \
   --tuner_type lora --lora_rank 16 --lora_alpha 32 --target_modules all-linear \
   --freeze_vit true --freeze_aligner true --torch_dtype bfloat16 --attn_impl sdpa \

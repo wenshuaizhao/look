@@ -8,7 +8,7 @@ from unittest.mock import patch
 from notebook_utils import (load_samples, summarize_probes, summarize_visabench,
                             find_adapter, default_models, validate_models)
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 
 
 class NotebookTests(unittest.TestCase):

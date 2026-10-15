@@ -22,7 +22,7 @@ PROBE_CONDITIONS = {
 
 
 def load_samples(root):
-    directory = Path(root) / 'code/examples/visabench'
+    directory = Path(root) / 'examples/visabench'
     rows = json.loads((directory / 'samples.json').read_text())['samples']
     result = []
     for row in rows:
