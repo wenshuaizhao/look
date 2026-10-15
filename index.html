@@ -8,7 +8,7 @@
   <title>Learning to Look</title>
   <link rel="preload" href="assets/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/CormorantGaramond-Variable.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="style.css?v=8">
+  <link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -133,7 +133,7 @@
           <tr><th scope="col">Yes (%) ↓</th><th scope="col"><i>p</i>(Yes) ↓</th><th scope="col">Yes (%) ↑</th><th scope="col"><i>p</i>(Yes) ↑</th><th scope="col">Yes (%) ↓</th><th scope="col"><i>p</i>(Yes) ↓</th></tr>
         </thead>
         <tbody>
-          <tr><th scope="row">Base</th><td>2.5</td><td><strong>0.041</strong></td><td>93.3</td><td><strong>0.927</strong></td><td>15.6</td><td>0.158</td><td>90.7</td></tr>
+          <tr><th scope="row">Qwen3-VL-8B-Instruct</th><td>2.5</td><td><strong>0.041</strong></td><td>93.3</td><td><strong>0.927</strong></td><td>15.6</td><td>0.158</td><td>90.7</td></tr>
           <tr><th scope="row">SFT</th><td>31.2</td><td>0.409</td><td>94.9</td><td>0.915</td><td>17.0</td><td>0.196</td><td>63.7</td></tr>
           <tr><th scope="row">LocPos</th><td>5.7</td><td>0.272</td><td>92.6</td><td>0.890</td><td>15.0</td><td>0.170</td><td>86.9</td></tr>
           <tr><th scope="row">Ours (1:10)</th><td>2.3</td><td>0.202</td><td>94.1</td><td>0.910</td><td>15.7</td><td>0.183</td><td>91.8</td></tr>
@@ -152,12 +152,18 @@
   <section id="code" class="prose" aria-labelledby="code-title">
     <h2 id="code-title">Quick demo</h2>
     <div class="content-card">
-    <p>Generate a crop from the sheep photograph and save its target box as a training example. The demo runs on CPU.</p>
+    <p>Run two notebooks to inspect visual awareness and compare models on VisABench samples.</p>
+    <ol class="notebook-list">
+      <li><a href="https://github.com/wenshuaizhao/look/blob/main/code/notebooks/01_visual_awareness_probes.ipynb">Visual-awareness probes</a><p>Compare pixel masks, patch-embedding masks, and crops with reset or restored positions.</p></li>
+      <li><a href="https://github.com/wenshuaizhao/look/blob/main/code/notebooks/02_visabench_model_comparison.ipynb">VisABench model comparison</a><p>Test Qwen3-VL-8B-Instruct, SFT, LOOK (10:10), Qwen2.5-VL, LLaVA, and Gemma on the same samples.</p></li>
+    </ol>
     <pre><code>git clone https://github.com/wenshuaizhao/look.git
 cd look
-pip install -r code/requirements-demo.txt
-python code/examples/quickstart.py</code></pre>
-    <p class="after-code">The output is saved in <code>work/quickstart/</code>: <code>context.png</code>, <code>crop.png</code>, and <code>look.jsonl</code>. See the <a href="https://github.com/wenshuaizhao/look#training-and-evaluation">repository</a> for training and evaluation.</p>
+python -m pip install -r code/requirements.txt -r code/requirements-notebooks.txt
+python -m pip install -e code/vendor/ms-swift
+python -m ipykernel install --user --name look --display-name 'Python (LOOK)'
+jupyter lab code/notebooks</code></pre>
+    <p class="after-code">Inference uses a GPU. Set the SFT and LOOK adapter paths in the second notebook; see the <a href="https://github.com/wenshuaizhao/look#run-the-notebooks">setup instructions</a>.</p>
       </div>
   </section>
 

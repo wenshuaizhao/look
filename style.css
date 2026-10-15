@@ -172,3 +172,8 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding-top: 
 .results-table .model-group { border-top: 2px solid var(--line); }
 .results-table strong { font-weight: 700; }
 .results-note { margin-bottom: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+
+.notebook-list { max-width: 880px; margin: 24px auto; padding-left: 24px; }
+.notebook-list li { padding-left: 6px; margin-bottom: 20px; }
+.notebook-list a { font-weight: 600; }
+.notebook-list p { margin: 6px 0 0; color: var(--muted); font-size: .95rem; }
