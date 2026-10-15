@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Learning to Look: A Foundation for Visual Understanding. Self-supervised visual-input awareness for vision-language models.">
+  <meta name="theme-color" content="#147d83">
+  <title>Learning to Look</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav"><a class="wordmark" href="#">LOOK<span> / visual understanding</span></a><nav aria-label="Main navigation"><a href="#method">Method</a><a href="#example">Try the idea</a><a href="#code">Code</a></nav></header>
+<main>
+  <section class="hero">
+    <p class="eyebrow">A foundation for visual understanding</p>
+    <h1>Learning to <span>Look.</span></h1>
+    <p class="lead">Before a model can say what it sees,<br>does it know where it is looking?</p>
+    <p class="authors">Wenshuai Zhao · Yihao Wang · Benjamin Robson · Juho Kannala · Arno Solin</p>
+    <p class="affiliations">Aalto University &nbsp; / &nbsp; ELLIS Institute Finland &nbsp; / &nbsp; University of Oulu</p>
+    <div class="links"><a class="button" href="https://raw.githubusercontent.com/wenshuaizhao/look/main/main.pdf">Read the paper <span aria-hidden="true">↗</span></a><a class="button secondary" href="https://github.com/wenshuaizhao/look">Get the code <span aria-hidden="true">↗</span></a></div>
+    <figure class="teaser"><img src="assets/teaser.png" alt="Three levels of visual understanding: Look identifies available visual input, Perceive identifies its content, and Understand interprets it."><figcaption>Where is the evidence? What does it contain? What follows from it?</figcaption></figure>
+  </section>
+  <section id="method" class="section">
+    <div class="section-title"><p class="eyebrow">01 / The idea</p><h2>Visual understanding<br>starts with awareness.</h2></div>
+    <div class="text"><p>Vision-language models can describe objects that are not present. We ask a more fundamental question: whether a model is aware of the visual input available to it before interpreting its meaning.</p><p><strong>LOOK</strong> makes that question testable. We select a rectangular crop on the model’s visual-token grid, preserve its positions from the full image, and ask the model to identify the region it can see. The crop coordinates supply exact supervision without semantic annotation.</p></div>
+    <figure class="method"><img src="assets/method.png" loading="lazy" alt="LOOK method: sample a token-grid-aligned crop, preserve its full-image positional information, and train the model to predict the visible region."></figure>
+    <div class="steps"><article><span>1</span><h3>Sample a view</h3><p>Choose a crop aligned to complete visual tokens. Pixels outside it are absent from the input.</p></article><article><span>2</span><h3>Keep its position</h3><p>Retain the crop’s full-image positional information rather than treating it as a new full image.</p></article><article><span>3</span><h3>Learn to locate</h3><p>Predict the visible region. The chosen crop provides its own bounding-box target.</p></article></div>
+  </section>
+  <section id="example" class="section example">
+    <div class="section-title"><p class="eyebrow">02 / Try the idea</p><h2>A small view.<br>A precise location.</h2><p>Move the crop across this synthetic scene. Its target is measured against the full canvas, even though the model receives only the crop.</p></div>
+    <div class="demo"><div class="demo-panes"><figure><div class="canvas"><img src="assets/scene.png" alt="Synthetic scene with a yellow circle, teal rectangle, and orange triangle."><div id="window" aria-hidden="true"></div></div><figcaption>Full canvas — shown for explanation</figcaption></figure><figure><canvas id="crop" width="256" height="192" aria-label="The crop pixels that would be supplied to the model"></canvas><figcaption>Model input — crop pixels only</figcaption></figure></div><label for="position">Horizontal crop position</label><input id="position" type="range" min="0" max="8" value="2"><output id="box" for="position" aria-live="polite"></output><p class="fine">Interactive illustration, not model inference. Coordinates are normalized to 0–1000. Position overrides are applied by the released Python code.</p></div>
+  </section>
+  <section class="section findings"><div class="section-title"><p class="eyebrow">03 / Evaluation</p><h2>Does the model use<br>the evidence?</h2></div><div class="text"><p><strong>VisABench</strong> compares the same questions with real visual evidence, absent evidence, and mismatched evidence. This probes whether a model grounds its answers in the input it actually receives.</p><p>Our experiments find that existing VLMs struggle to localize their visible region. Fine-tuning on LOOK improves visual-input awareness and reduces hallucinated object presence when evidence is absent.</p><p>The paper reports position-reset controls, data-ratio experiments, and downstream evaluations. Transfer is mixed across benchmarks; awareness gains should be read alongside real-image performance and output-format reliability.</p><a class="text-link" href="https://raw.githubusercontent.com/wenshuaizhao/look/main/main.pdf">Explore the experiments in the paper ↗</a></div></section>
+  <section id="code" class="section code"><div class="section-title"><p class="eyebrow">04 / Get started</p><h2>Run a tiny example.<br>Explore the full method.</h2><p>The CPU example needs no model download. Training and benchmark evaluation use separately obtained models and datasets.</p><a class="text-link" href="https://github.com/wenshuaizhao/look#training-and-evaluation">Training &amp; evaluation instructions ↗</a></div><div><pre><code>git clone https://github.com/wenshuaizhao/look.git
+cd look
+pip install -r code/requirements-demo.txt
+python code/examples/quickstart.py</code></pre><p class="fine">Includes the crop sampler, position overrides, training template, VisABench, downstream evaluation, and a source snapshot of the experimental framework.</p></div></section>
+  <section class="citation"><p class="eyebrow">Citation</p><pre><code>@misc{zhao2026learningtolook,
+  title={Learning to Look: A Foundation for Visual Understanding},
+  author={Wenshuai Zhao and Yihao Wang and Benjamin Robson
+          and Juho Kannala and Arno Solin},
+  year={2026},
+  url={https://github.com/wenshuaizhao/look}
+}</code></pre></section>
+</main>
+<footer><span>Learning to Look · 2026</span><a href="https://github.com/wenshuaizhao/look">Source &amp; reproducibility ↗</a></footer>
+<script src="demo.js"></script>
+</body>
+</html>
