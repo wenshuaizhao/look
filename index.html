@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#192f50">
   <title>Learning to Look</title>
   <link rel="preload" href="assets/fonts/source-sans-pro-regular.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -39,8 +39,12 @@
       <a href="#citation"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4H5v16h3m8-16h3v16h-3M10 9h4m-4 6h4"/></svg><span>BibTeX</span></a>
     </div>
     <figure class="teaser">
-      <img src="assets/teaser.png" width="1620" height="531" alt="Look identifies the available region of an image; Perceive identifies its content; Understand interprets that content.">
-      <figcaption>We distinguish three levels of visual understanding: <em>Look</em>, <em>Perceive</em>, and <em>Understand</em>. This work studies the first: identifying which part of an image is available to the model.</figcaption>
+      <video id="teaser-video" controls muted loop playsinline preload="metadata" poster="assets/teaser.png" width="1440" height="720" aria-label="Animated Look, Perceive, and Understand sequence" aria-describedby="teaser-caption">
+        <source src="assets/teaser.mp4" type="video/mp4">
+        <a href="assets/teaser.mp4">Watch the animated teaser</a> or <a href="assets/teaser.png">view the original figure</a>.
+      </video>
+      <img id="teaser-fallback" hidden src="assets/teaser.png" width="1620" height="531" alt="Look identifies the available region of an image; Perceive identifies its content; Understand interprets that content.">
+      <figcaption id="teaser-caption">We distinguish three levels of visual understanding: <em>Look</em>, <em>Perceive</em>, and <em>Understand</em>. The animation follows the selected crop through these levels. Descriptions and inference are illustrative, not model predictions.</figcaption>
     </figure>
   </section>
 
@@ -114,5 +118,6 @@ python code/examples/quickstart.py</code></pre>
 </main>
 <footer><span>Learning to Look, 2026</span><a href="https://github.com/wenshuaizhao/look">GitHub</a></footer>
 <script src="demo.js"></script>
+<script src="teaser.js"></script>
 </body>
 </html>
