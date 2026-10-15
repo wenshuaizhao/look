@@ -1,0 +1,26 @@
+# Generated paper outputs
+*.aux
+*.log
+*.out
+*.blg
+*.bbl
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+arXiv.zip
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+work/
+data/
+cache/
+runs/
+checkpoints/
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.bin
+backup/
+revision_backup_*/

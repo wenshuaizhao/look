@@ -1,0 +1,34 @@
+{
+  "source": "RefCOCO testA/testB (jxu124/refcoco), COCO train2014 photographs",
+  "selection": "First expression for each of the first four distinct images in the full VisABench evaluation order. Mismatch expressions retained from that evaluation.",
+  "samples": [
+    {
+      "id": "refcoco_testB/49986/142163",
+      "expr": "zebra in the middle",
+      "mismatch_expr": "man in glasses",
+      "image": "images/COCO_train2014_000000000154.jpg",
+      "sha256": "0c726be74f7b08dc54fd021adc50a74643de87179d26df743a3689d7b1343d51"
+    },
+    {
+      "id": "refcoco_testB/49949/142049",
+      "expr": "clear glass",
+      "mismatch_expr": "right pic",
+      "image": "images/COCO_train2014_000000000605.jpg",
+      "sha256": "0b8536bdcdd80f4147ecd115e8dda984055b93e866d1a2deb7973e90884188fc"
+    },
+    {
+      "id": "refcoco_testA/49932/142001",
+      "expr": "person on left",
+      "mismatch_expr": "second jar from right",
+      "image": "images/COCO_train2014_000000000839.jpg",
+      "sha256": "4f8e5534aac2ba64ac971485dd620a7165b8e9aff13f9d83d6d799ae30152d10"
+    },
+    {
+      "id": "refcoco_testA/49833/141720",
+      "expr": "woman washing dishes",
+      "mismatch_expr": "left kid",
+      "image": "images/COCO_train2014_000000002083.jpg",
+      "sha256": "e50e6f6fd8fbf537627bac629bd2746ac572c2b03ba3c9c7d1a195c2a4a023ac"
+    }
+  ]
+}
