@@ -18,7 +18,7 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt -r requirements-notebooks.txt
 python -m pip install -e vendor/ms-swift
 python -m ipykernel install --user --name look --display-name 'Python (LOOK)'
-export PYTHONPATH="$PWD/code${PYTHONPATH:+:$PYTHONPATH}"
+export PYTHONPATH="$PWD${PYTHONPATH:+:$PYTHONPATH}"
 export WORK="$PWD/work"
 export HF_HOME="$WORK/cache/huggingface"
 export MODELSCOPE_CACHE="$WORK/cache/modelscope"

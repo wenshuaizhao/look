@@ -3,7 +3,7 @@
 Run from the repository root with the training environment installed:
 
 ```bash
-export PYTHONPATH="$PWD/code${PYTHONPATH:+:$PYTHONPATH}"
+export PYTHONPATH="$PWD${PYTHONPATH:+:$PYTHONPATH}"
 export WORK="$PWD/work"
 export HF_HOME="$WORK/cache/huggingface"
 export MODELSCOPE_CACHE="$WORK/cache/modelscope"
